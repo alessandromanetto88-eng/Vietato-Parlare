@@ -250,6 +250,12 @@ body {
   font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
   color:var(--ink);background:none;border:none;outline:none;
   width:100%;cursor:text;text-align:center;
+  border-bottom:1.5px dashed var(--border2);
+}
+.host-name-edit:focus{
+  border-bottom:1.5px solid var(--brown);
+  background:rgba(122,78,24,0.04);
+  border-radius:4px;
 }
 /* guest host tile */
 .host-tile.guest .host-avatar {
@@ -750,18 +756,6 @@ audio{width:100%;margin-top:10px;}
     </div>
 
 
-    <div class="card">
-      <div class="card-label">Note rapide episodio</div>
-      <div class="notes-list" id="notesList"></div>
-      <div class="note-input-row">
-        <input type="text" id="noteInput" placeholder="Aggiungi un'idea, un appunto, un spunto…" onkeydown="if(event.key==='Enter')addNote()">
-        <button class="btn btn-brown" onclick="addNote()">+</button>
-      </div>
-      <div style="margin-top:10px;display:flex;gap:8px;align-items:center;">
-        <select id="noteHost" style="flex:1;font-size:12px;padding:7px 10px;"></select>
-        <button class="btn btn-ghost" style="font-size:10px;padding:7px 10px;" onclick="clearNotes()">🗑 Svuota</button>
-      </div>
-    </div>
 
 
   </div>
@@ -854,6 +848,56 @@ audio{width:100%;margin-top:10px;}
     </div>
   </div>
 
+  <!-- ═══ TALK (PeerJS) ═══ -->
+  <div class="section" id="sec-talk">
+    <div class="live-header">
+      <div class="live-header-icon">🎧</div>
+      <div>
+        <div class="live-header-title">Talk — Chiamata Vocale</div>
+        <div class="live-header-sub">Solo audio · nessun login · connessione diretta</div>
+      </div>
+    </div>
+
+    <div class="card" id="talkSetup">
+      <div class="card-label">Codice stanza</div>
+      <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:12px;">Scegli un codice e comunicalo ai colleghi via WhatsApp.</p>
+      <input type="text" id="talkCodeInput" placeholder="Es: TALK01" style="text-align:center;font-size:18px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;" oninput="this.value=this.value.toUpperCase()">
+      <div class="btn-row" style="justify-content:center;margin-top:8px;">
+        <button class="btn btn-red" style="font-size:14px;padding:14px 28px;width:100%;justify-content:center;" onclick="startTalk()">🎧 AVVIA TALK</button>
+      </div>
+      <div style="text-align:center;margin-top:10px;">
+        <button class="btn btn-ghost" style="font-size:11px;width:100%;justify-content:center;white-space:normal;line-height:1.4;" onclick="copyTalkCode()">🔗 Copia codice da mandare ai colleghi</button>
+      </div>
+    </div>
+
+    <div class="jitsi-container" id="talkContainer">
+      <div class="jitsi-topbar">
+        <div class="jitsi-status">
+          <div class="jitsi-live-dot"></div>
+          <span id="talkRoomLabel">Talk in corso</span>
+        </div>
+        <button class="btn btn-ghost" style="font-size:10px;padding:5px 10px;color:#e8c870;border-color:#555;" onclick="stopTalk()">✕ Chiudi Talk</button>
+      </div>
+      <div id="talkPanel" style="background:#111;padding:20px 16px;color:#fff;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+        <div id="talkStatus" style="font-size:15px;font-weight:600;">⏳ Connessione...</div>
+        <div id="talkConnected" style="font-size:13px;color:#4caf50;display:none;">🎧 Colleghi connessi: <span id="talkCount">0</span></div>
+        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;">
+          <button onclick="muteTalk()" id="talkMuteBtn" style="background:#333;border:none;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer;">🎙 Muto</button>
+          <button onclick="stopTalk()" style="background:#c0280e;border:none;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer;">✕ Chiudi</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:10px;">
+      <div class="card-label">Come funziona</div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="step-row"><div class="step-num step-1">1</div><div class="step-text">Scegli un codice e mandalo ai colleghi</div></div>
+        <div class="step-row"><div class="step-num step-2">2</div><div class="step-text">Tutti inseriscono lo stesso codice e premono <strong>Avvia Talk</strong></div></div>
+        <div class="step-row"><div class="step-num step-3">3</div><div class="step-text">Connessione diretta — solo voce, nessun login</div></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ═══ AI PRODUTTORE ═══ -->
   <div class="section" id="sec-producer">
     <p class="section-intro">Il Produttore AI scrive scalette, intro, domande e titoli. Voi parlate, lui lavora.</p>
@@ -933,6 +977,10 @@ audio{width:100%;margin-top:10px;}
     <div class="nav-icon-wrap"><span class="nav-icon">📡</span></div>
     <span class="nav-label">Diretta</span>
   </button>
+  <button class="nav-item" id="nav-talk" onclick="showSection(this,'talk')">
+    <div class="nav-icon-wrap"><span class="nav-icon">🎧</span></div>
+    <span class="nav-label">Talk</span>
+  </button>
   <button class="nav-item" id="nav-producer" onclick="showSection(this,'producer')">
     <div class="nav-icon-wrap"><span class="nav-icon">🤖</span></div>
     <span class="nav-label">AI</span>
@@ -954,9 +1002,9 @@ audio{width:100%;margin-top:10px;}
 // ── STATE ──
 const DEF = {
   hosts:[
-    {id:1,name:'Conduttore 1',emoji:'🎙',role:'Conduttore',eps:0,votes:0,props:0},
-    {id:2,name:'Conduttore 2',emoji:'🎤',role:'Conduttore',eps:0,votes:0,props:0},
-    {id:3,name:'Ospite',emoji:'🌟',role:'Ospite',eps:0,votes:0,props:0},
+    {id:1,name:'Conduttore',emoji:'🎙',role:'Conduttore',eps:0,votes:0,props:0},
+    {id:2,name:'Ospite 1',emoji:'🎤',role:'Ospite',eps:0,votes:0,props:0},
+    {id:3,name:'Ospite 2',emoji:'🌟',role:'Ospite',eps:0,votes:0,props:0},
   ],
   activeHost:null,episodes:[],
   voteTopics:[
@@ -1185,9 +1233,11 @@ function resetTimer(){
 
 // ── NOTES ──
 function renderNoteHostSelect(){
+  const el=document.getElementById('noteHost');
+  if(!el) return;
   const opts=S.hosts.map(h=>`<option value="${h.id}">${h.emoji} ${h.name}</option>`).join('');
-  document.getElementById('noteHost').innerHTML=opts;
-  if(S.activeHost) document.getElementById('noteHost').value=S.activeHost;
+  el.innerHTML=opts;
+  if(S.activeHost) el.value=S.activeHost;
 }
 
 function addNote(){
@@ -1212,6 +1262,7 @@ function clearNotes(){
 
 function renderNotes(){
   const list=document.getElementById('notesList');
+  if(!list) return;
   if(!S.notes||!S.notes.length){list.innerHTML='<div style="text-align:center;padding:16px;font-size:12px;color:var(--ink);font-family:\'Barlow Condensed\',sans-serif;letter-spacing:2px;text-transform:uppercase;">Nessuna nota ancora</div>';return;}
   list.innerHTML=S.notes.map(n=>{
     const h=S.hosts.find(x=>x.id===n.hid);
@@ -1231,7 +1282,7 @@ function renderNotes(){
 let jitsiActive = false;
 
 function getRoom() {
-  const code = document.getElementById('roomCodeInput')?.value?.trim().toUpperCase().replace(/\s+/g,'_');
+  const code = document.getElementById('roomCodeInput')?.value?.trim().toUpperCase().split(' ').join('_');
   return code ? 'VietatoParlare_' + code : null;
 }
 
@@ -1320,6 +1371,161 @@ async function runAI() {
 function copyAI(){navigator.clipboard.writeText(document.getElementById('aiResult').textContent).then(()=>toast('Copiato!'));}
 function useAsNote(){document.getElementById('epTopic').value=document.getElementById('aiResult').textContent.substring(0,300);document.getElementById('nav-studio').click();toast('Copiato nelle note!');}
 
+// ── TALK (PeerJS) ──
+let talkStream = null;
+let talkPeer = null;
+let talkCalls = [];
+let talkMuted = false;
+
+function startTalk() {
+  const code = document.getElementById('talkCodeInput')?.value?.trim().toUpperCase().split(' ').join('_');
+  if (!code) { toast('Inserisci un codice stanza!'); return; }
+  const room = 'VietatoParlare_TALK_' + code;
+  document.getElementById('talkRoomLabel').textContent = '🔴 Talk · ' + code;
+  document.getElementById('talkContainer').classList.add('active');
+  document.getElementById('talkSetup').style.display = 'none';
+
+  if (!window.Peer) {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js';
+    script.onload = () => initTalk(room);
+    script.onerror = () => { document.getElementById('talkStatus').textContent = '⚠️ Errore caricamento. Riprova.'; };
+    document.head.appendChild(script);
+  } else {
+    initTalk(room);
+  }
+}
+
+function initTalk(room) {
+  navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+    .then(stream => {
+      talkStream = stream;
+      const hostId = room + '_HOST';
+      talkPeer = new Peer(hostId, { debug: 0 });
+
+      talkPeer.on('open', () => {
+        document.getElementById('talkStatus').textContent = '✅ Stanza aperta! Aspetta i colleghi...';
+        toast('🎧 Talk aperto!');
+      });
+
+      talkPeer.on('call', call => {
+        call.answer(talkStream);
+        talkCalls.push(call);
+        call.on('stream', remoteStream => {
+          addTalkAudio(remoteStream, call.peer);
+          document.getElementById('talkCount').textContent = talkCalls.length;
+          document.getElementById('talkConnected').style.display = 'block';
+          document.getElementById('talkStatus').textContent = '🎧 Talk in corso!';
+          toast('🎧 Collega entrato!');
+        });
+        call.on('close', () => {
+          talkCalls = talkCalls.filter(c => c !== call);
+          removeTalkAudio(call.peer);
+          document.getElementById('talkCount').textContent = talkCalls.length;
+        });
+      });
+
+      talkPeer.on('error', err => {
+        if (err.type === 'unavailable-id') {
+          joinTalkAsGuest(room, stream);
+        } else {
+          document.getElementById('talkStatus').textContent = '⚠️ Errore: ' + err.type;
+        }
+      });
+    })
+    .catch(() => {
+      document.getElementById('talkStatus').textContent = '⚠️ Microfono non disponibile.';
+      toast('Abilita il microfono!');
+    });
+}
+
+function joinTalkAsGuest(room, stream) {
+  const guestId = room + '_GUEST_' + Math.random().toString(36).substr(2,4);
+  talkPeer = new Peer(guestId, { debug: 0 });
+  talkPeer.on('open', () => {
+    document.getElementById('talkStatus').textContent = '🔗 Connessione al conduttore...';
+    const call = talkPeer.call(room + '_HOST', stream);
+    if (!call) {
+      document.getElementById('talkStatus').textContent = '⚠️ Nessuno ha ancora aperto la stanza. Aspetta o riprova.';
+      return;
+    }
+    talkCalls.push(call);
+    call.on('stream', remoteStream => {
+      addTalkAudio(remoteStream, call.peer);
+      document.getElementById('talkStatus').textContent = '✅ Connesso!';
+      document.getElementById('talkConnected').style.display = 'block';
+      toast('🎧 Connesso!');
+    });
+  });
+}
+
+function addTalkAudio(stream, peerId) {
+  let audio = document.getElementById('talkaudio_' + peerId);
+  if (!audio) {
+    audio = document.createElement('audio');
+    audio.id = 'talkaudio_' + peerId;
+    audio.autoplay = true;
+    audio.playsInline = true;
+    document.body.appendChild(audio);
+  }
+  audio.srcObject = stream;
+}
+
+function removeTalkAudio(peerId) {
+  const audio = document.getElementById('talkaudio_' + peerId);
+  if (audio) audio.remove();
+}
+
+function muteTalk() {
+  if (!talkStream) return;
+  talkMuted = !talkMuted;
+  talkStream.getAudioTracks().forEach(t => t.enabled = !talkMuted);
+  const btn = document.getElementById('talkMuteBtn');
+  if (btn) btn.textContent = talkMuted ? '🔇 Riattiva' : '🎙 Muto';
+  toast(talkMuted ? '🔇 Microfono disattivato' : '🎙 Microfono attivo');
+}
+
+function stopTalk() {
+  talkCalls.forEach(c => { try { c.close(); } catch(e){} });
+  talkCalls = [];
+  if (talkPeer) { try { talkPeer.destroy(); } catch(e){} talkPeer = null; }
+  if (talkStream) { talkStream.getTracks().forEach(t => t.stop()); talkStream = null; }
+  talkMuted = false;
+  document.querySelectorAll('audio[id^="talkaudio_"]').forEach(a => a.remove());
+  document.getElementById('talkContainer').classList.remove('active');
+  document.getElementById('talkSetup').style.display = 'block';
+  document.getElementById('talkStatus').textContent = '⏳ Connessione...';
+  document.getElementById('talkConnected').style.display = 'none';
+  toast('Talk chiuso.');
+}
+
+function copyTalkCode() {
+  const code = document.getElementById('talkCodeInput')?.value?.trim().toUpperCase();
+  if (!code) { toast('Inserisci prima un codice!'); return; }
+  const msg = '🎧 Vietato Parlare — Codice Talk: ' + code + ' - Apri app: https://alessandromanetto88-eng.github.io/Vietato-Parlare/studiocast-final.html';
+  navigator.clipboard.writeText(msg).then(() => toast('Codice copiato! Incollalo su WhatsApp 📱'));
+}
+
+// ── SAVE EPISODE ──
+function promptSaveEp() {
+  if (timerSecs === 0) { toast('Avvia prima il timer!'); return; }
+  const title = window.prompt('Titolo della puntata:', 'Puntata ' + (S.epNext));
+  if (!title || !title.trim()) { toast('Titolo non inserito.'); return; }
+  const ep = {
+    id: S.epNext++,
+    title: title.trim(),
+    date: new Date().toLocaleDateString('it-IT'),
+    dur: timerSecs,
+    host: S.activeHost || 1,
+    status: 'rec'
+  };
+  S.episodes.unshift(ep);
+  save();
+  document.getElementById('epCounter').textContent = S.episodes.length + ' episodi';
+  resetTimer();
+  toast('✅ Puntata salvata!');
+}
+
 // ── EPISODES ──
 function renderEps(){
   const grid=document.getElementById('epGrid'),empty=document.getElementById('epEmpty');
@@ -1384,16 +1590,16 @@ function renderRank(){
 // ── TOAST ──
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
 
-// ── INIT ── versione 6 — reset automatico se struttura vecchia
-const CURRENT_VERSION = 6;
+// ── INIT ── versione 7 — reset automatico se struttura vecchia
+const CURRENT_VERSION = 7;
 const saved = JSON.parse(localStorage.getItem('sc5')||'null');
 if (!saved || saved.version !== CURRENT_VERSION) {
   // Migra nomi utente se esistono, ma aggiorna ruoli e struttura
   DEF.version = CURRENT_VERSION;
   if (saved && saved.hosts) {
-    DEF.hosts[0].name = saved.hosts[0]?.name || 'Conduttore 1';
-    DEF.hosts[1].name = saved.hosts[1]?.name || 'Conduttore 2';
-    DEF.hosts[2].name = saved.hosts[2]?.name || 'Ospite';
+    DEF.hosts[0].name = saved.hosts[0]?.name || 'Conduttore';
+    DEF.hosts[1].name = saved.hosts[1]?.name || 'Ospite 1';
+    DEF.hosts[2].name = saved.hosts[2]?.name || 'Ospite 2';
     DEF.episodes = saved.episodes || [];
     DEF.voteTopics = saved.voteTopics || DEF.voteTopics;
     DEF.epNext = saved.epNext || 1;
