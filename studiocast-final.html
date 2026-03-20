@@ -1333,6 +1333,18 @@ audio{width:100%;margin-top:10px;}
 
 <div class="toast" id="toast"></div>
 
+<!-- SALVA PUNTATA MODAL -->
+<div id="saveModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--cream);border-radius:12px;padding:20px;width:100%;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+    <div style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-bottom:12px;">💾 Salva Puntata</div>
+    <input type="text" id="saveEpTitle" placeholder="Titolo della puntata..." style="width:100%;margin-bottom:12px;">
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-ghost" style="flex:1;justify-content:center;font-size:12px;" onclick="closeSaveModal()">Annulla</button>
+      <button class="btn btn-brown" style="flex:1;justify-content:center;font-size:12px;" onclick="confirmSaveEp()">✅ Salva</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── STATE ──
 const DEF = {
@@ -1960,43 +1972,51 @@ function resetTalkTimer() {
   document.getElementById('talkRecLabel').textContent = 'NON IN REGISTRAZIONE';
 }
 
-function promptSaveTalkEp() {
-  if (talkTimerSecs === 0) { toast('Avvia prima il timer!'); return; }
-  const title = window.prompt('Titolo della puntata:', 'Puntata ' + (S.epNext));
-  if (!title || !title.trim()) { toast('Titolo non inserito.'); return; }
-  const ep = {
-    id: S.epNext++,
-    title: title.trim(),
-    date: new Date().toLocaleDateString('it-IT'),
-    dur: talkTimerSecs,
-    host: S.activeHost || 1,
-    status: 'rec'
-  };
-  S.episodes.unshift(ep);
-  save();
-  document.getElementById('epCounter').textContent = S.episodes.length + ' episodi';
-  resetTalkTimer();
-  toast('Puntata salvata!');
-}
+
 
 // ── SAVE EPISODE ──
+let _savingFromTalk = false;
+
 function promptSaveEp() {
   if (timerSecs === 0) { toast('Avvia prima il timer!'); return; }
-  const title = window.prompt('Titolo della puntata:', 'Puntata ' + (S.epNext));
-  if (!title || !title.trim()) { toast('Titolo non inserito.'); return; }
+  _savingFromTalk = false;
+  document.getElementById('saveEpTitle').value = 'Puntata ' + S.epNext;
+  const modal = document.getElementById('saveModal');
+  modal.style.display = 'flex';
+  setTimeout(() => document.getElementById('saveEpTitle').focus(), 100);
+}
+
+function promptSaveTalkEp() {
+  if (talkTimerSecs === 0) { toast('Avvia prima il timer!'); return; }
+  _savingFromTalk = true;
+  document.getElementById('saveEpTitle').value = 'Puntata ' + S.epNext;
+  const modal = document.getElementById('saveModal');
+  modal.style.display = 'flex';
+  setTimeout(() => document.getElementById('saveEpTitle').focus(), 100);
+}
+
+function closeSaveModal() {
+  document.getElementById('saveModal').style.display = 'none';
+}
+
+function confirmSaveEp() {
+  const title = document.getElementById('saveEpTitle').value.trim();
+  if (!title) { toast('Inserisci un titolo!'); return; }
+  const dur = _savingFromTalk ? talkTimerSecs : timerSecs;
   const ep = {
     id: S.epNext++,
-    title: title.trim(),
+    title: title,
     date: new Date().toLocaleDateString('it-IT'),
-    dur: timerSecs,
+    dur: dur,
     host: S.activeHost || 1,
     status: 'rec'
   };
   S.episodes.unshift(ep);
   save();
   document.getElementById('epCounter').textContent = S.episodes.length + ' episodi';
-  resetTimer();
-  toast('✅ Puntata salvata!');
+  closeSaveModal();
+  if (_savingFromTalk) { resetTalkTimer(); } else { resetTimer(); }
+  toast('Puntata salvata!');
 }
 
 // ── EPISODES ──
