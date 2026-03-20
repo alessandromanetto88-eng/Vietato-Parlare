@@ -1242,7 +1242,7 @@ function startLive() {
   const frameDiv = document.getElementById('jitsiFrame');
   document.getElementById('jitsiRoomLabel').textContent = '🔴 In diretta · ' + room;
   frameDiv.innerHTML = `<iframe
-    src="https://meet.jit.si/${room}#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.requireDisplayName=false&config.enableLobbyChat=false&config.lobby.autoKnock=true&config.disableDeepLinking=true&config.prejoinPageEnabled=false&config.enableWelcomePage=false&config.startAsMuted=false&config.disableModeratorIndicator=true&config.enableNoAudioDetection=false&config.enableNoisyMicDetection=false&config.toolbarButtons=[%22microphone%22,%22camera%22,%22hangup%22,%22tileview%22]&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false"
+  src="https://8x8.vc/vp/${room}#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.requireDisplayName=false&config.enableLobbyChat=false&config.lobby.autoKnock=true&config.disableDeepLinking=true&config.prejoinPageEnabled=false&config.enableWelcomePage=false&config.startAsMuted=false&config.disableModeratorIndicator=true&config.enableNoAudioDetection=false&config.enableNoisyMicDetection=false&config.toolbarButtons=[%22microphone%22,%22camera%22,%22hangup%22,%22tileview%22]&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false"
     allow="camera; microphone; fullscreen; display-capture; autoplay"
     style="width:100%;height:360px;border:none;"></iframe>`;
   container.classList.add('active');
