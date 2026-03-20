@@ -39,7 +39,7 @@ body {
 .topbar {
   flex-shrink:0;
   position:relative;
-  height:130px;
+  height:160px;
   overflow:hidden;
 }
 .topbar-photo {
@@ -91,11 +91,11 @@ body {
   flex-shrink:0;
   background: linear-gradient(to right, #c8a060 0%, #d4b070 18%, var(--cream) 55%, var(--cream) 100%);
   border-bottom:2px solid var(--border2);
-  padding:8px 16px 10px;
+  padding:2px 16px 3px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:5px;
+  gap:1px;
 }
 .clockstrip-row {
   display:flex;
@@ -106,15 +106,15 @@ body {
 .clock { font-family:'Outfit',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--ink); }
 .podcast-title {
   font-family:'Pinyon Script',cursive;
-  font-size:42px;
-  font-weight:400;
+  font-size:34px;
+  font-weight:700;
   letter-spacing:2px;
   color:var(--ink);
   text-align:center;
   line-height:1;
   width:100%;
   position:relative;
-  padding-bottom:5px;
+  padding-bottom:3px;
   text-transform:none;
   -webkit-text-stroke: 0.4px var(--ink);
   paint-order: stroke fill;
@@ -122,9 +122,9 @@ body {
 .podcast-title::after {
   content:'';
   display:block;
-  margin:4px auto 0;
-  width:40px;
-  height:2px;
+  margin:2px auto 0;
+  width:20px;
+  height:1px;
   background: linear-gradient(to right, var(--brown), var(--red));
   border-radius:2px;
 }
@@ -137,8 +137,10 @@ body {
   overflow-y:auto;
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
-  padding:16px 14px calc(var(--nav-h) + 16px);
+  padding:8px 10px calc(var(--nav-h) + 8px);
   background:var(--bg);
+  display:flex;
+  flex-direction:column;
 }
 
 /* ── BOTTOM NAV ── */
@@ -192,6 +194,7 @@ body {
 /* ── SECTIONS ── */
 .section { display:none; animation:fadein .25s ease; }
 .section.active { display:block; }
+#sec-studio.active { display:flex; flex-direction:column; justify-content:center; align-items:stretch; flex:1; overflow:hidden; }
 @keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── CARD ── */
@@ -199,34 +202,34 @@ body {
   background:var(--cream);
   border:1.5px solid var(--border2);
   border-radius:6px;
-  padding:18px;
-  margin-bottom:12px;
+  padding:10px;
+  margin-bottom:7px;
   box-shadow: 0 3px 16px rgba(60,35,10,0.13), inset 0 0 0 1px rgba(255,248,235,0.9);
   position:relative;
 }
 .card-label {
   font-family:'Outfit',sans-serif;
   font-size:12px;letter-spacing:3px;text-transform:uppercase;
-  color:var(--ink);margin-bottom:16px;font-weight:800;
+  color:var(--ink);margin-bottom:8px;font-weight:800;
   display:flex;align-items:center;gap:10px;
 }
 .card-label::before{content:'';width:3px;height:14px;background:var(--brown);border-radius:2px;flex-shrink:0;}
 .card-label::after{content:'';flex:1;height:1.5px;background:var(--border2);}
 
 /* ── HOSTS ── */
-.hosts-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:16px;}
+.hosts-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;}
 .host-tile {
   display:flex;flex-direction:column;align-items:center;
   cursor:pointer;transition:all .25s;
   background:transparent;border:none;
-  padding:4px 0;
+  padding:2px 0;
 }
 .host-avatar{
-  width:72px;height:72px;
+  width:58px;height:58px;
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   background:linear-gradient(145deg,#e8dcc8,#cfc0a0);
-  font-size:30px;position:relative;
+  font-size:24px;position:relative;
   border:2.5px solid var(--border2);
   box-shadow:0 3px 12px rgba(60,35,10,0.12);
   transition:all .25s;
@@ -244,10 +247,10 @@ body {
   padding:2px 7px;border-radius:10px;white-space:nowrap;
 }
 .host-tile.active-host .active-badge{display:block;}
-.host-body{padding:8px 4px 2px;text-align:center;}
+.host-body{padding:6px 4px 2px;text-align:center;}
 .host-name-edit{
   font-family:'Outfit',sans-serif;
-  font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  font-size:12px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;
   color:var(--ink);background:none;border:none;outline:none;
   width:100%;cursor:text;text-align:center;
   border-bottom:1.5px dashed var(--border2);
@@ -275,7 +278,7 @@ body {
 }
 
 /* ── FORM ── */
-.form-group{margin-bottom:12px;}
+.form-group{margin-bottom:7px;}
 label{
   display:block;
   font-family:'Outfit',sans-serif;
@@ -285,8 +288,8 @@ label{
 input[type=text],textarea,select{
   width:100%;background:#fff;border:1.5px solid var(--border2);
   border-radius:6px;color:var(--ink);
-  font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;
-  padding:10px 12px;outline:none;resize:none;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;
+  padding:7px 10px;outline:none;resize:none;
   transition:border-color .2s;-webkit-appearance:none;
 }
 input:focus,textarea:focus,select:focus{border-color:var(--brown);}
@@ -322,7 +325,7 @@ select option{background:#fff;}
   color:var(--ink);margin-bottom:12px;transition:color .3s;
 }
 .rec-timer.active{color:var(--red);}
-.waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:30px;margin-bottom:16px;}
+.waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:22px;margin-bottom:8px;}
 .wbar{width:3px;border-radius:2px;background:var(--brown);opacity:.25;transition:opacity .3s;}
 .waveform.live .wbar{opacity:1;animation:wv .6s ease-in-out infinite alternate;background:var(--brown);}
 .wbar:nth-child(1){height:5px;animation-delay:0s}.wbar:nth-child(2){height:16px;animation-delay:.06s}
@@ -337,17 +340,17 @@ audio{width:100%;margin-top:10px;}
 /* ── JITSI EMBED ── */
 .live-header{
   background:var(--cream);border:1px solid var(--border);
-  border-radius:6px;padding:14px 16px;margin-bottom:10px;
-  display:flex;align-items:center;gap:12px;
+  border-radius:6px;padding:6px 10px;margin-bottom:5px;
+  display:flex;align-items:center;gap:6px;
   box-shadow:var(--shadow);
 }
-.live-header-icon{font-size:28px;}
-.live-header-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;letter-spacing:1px;color:var(--brown);}
-.live-header-sub{font-size:12px;font-weight:700;color:var(--ink);margin-top:2px;text-transform:uppercase;letter-spacing:1px;}
+.live-header-icon{font-size:20px;}
+.live-header-title{font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;color:var(--brown);}
+.live-header-sub{font-size:10px;font-weight:700;color:var(--ink);margin-top:1px;text-transform:uppercase;letter-spacing:1px;}
 
 .room-setup{
   background:var(--cream);border:1px solid var(--border);
-  border-radius:6px;padding:16px;margin-bottom:10px;
+  border-radius:6px;padding:8px;margin-bottom:5px;
   box-shadow:var(--shadow);
 }
 
@@ -387,8 +390,8 @@ audio{width:100%;margin-top:10px;}
 .ai-result{
   display:none;background:#fff;
   border:1px solid var(--border);border-left:3px solid var(--brown);
-  border-radius:6px;padding:14px;margin-top:10px;
-  font-size:14px;line-height:1.75;color:var(--ink);white-space:pre-wrap;
+  border-radius:6px;padding:8px;margin-top:6px;
+  font-size:13px;line-height:1.5;color:var(--ink);white-space:pre-wrap;
 }
 .ai-result.show{display:block;animation:fadein .3s ease;}
 .ai-spinner{
@@ -403,27 +406,27 @@ audio{width:100%;margin-top:10px;}
 
 /* ── EPISODES ── */
 .ep-card{
-  display:flex;align-items:center;gap:12px;
+  display:flex;align-items:center;gap:8px;
   background:var(--cream);border:1.5px solid var(--border2);
-  border-radius:6px;padding:12px 14px;margin-bottom:8px;
+  border-radius:6px;padding:8px 10px;margin-bottom:5px;
   box-shadow:0 3px 14px rgba(60,35,10,0.11);
 }
 .ep-num{font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--ink-faint);min-width:34px;line-height:1;}
 .ep-info{flex:1;min-width:0;}
-.ep-title-text{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;letter-spacing:.5px;color:var(--ink);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ep-title-text{font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--ink);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ep-meta{font-size:11px;font-weight:700;color:var(--ink);display:flex;gap:10px;flex-wrap:wrap;}
 .ep-status{font-family:'Outfit',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
 .ep-status.rec{background:rgba(26,110,56,.1);color:var(--green);}
 .ep-status.draft{background:var(--cream2);color:var(--ink-dim);}
 
 /* ── VOTES ── */
-.vote-card{background:var(--cream);border:1.5px solid var(--border2);border-radius:6px;padding:14px;margin-bottom:8px;box-shadow:0 3px 14px rgba(60,35,10,0.11);}
-.vote-q{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.3;}
-.vote-by{font-size:10px;font-weight:800;color:var(--ink);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+.vote-card{background:var(--cream);border:1.5px solid var(--border2);border-radius:6px;padding:6px 8px;margin-bottom:4px;box-shadow:0 2px 8px rgba(60,35,10,0.08);}
+.vote-q{font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;line-height:1.3;}
+.vote-by{font-size:10px;font-weight:800;color:var(--ink);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
 .vote-opt{display:flex;flex-direction:column;gap:6px;}
 .vote-btn{
   display:flex;align-items:center;justify-content:space-between;
-  padding:9px 12px;background:#fff;
+  padding:6px 10px;background:#fff;
   border:1.5px solid var(--border2);border-radius:6px;
   cursor:pointer;transition:all .2s;font-size:13px;font-weight:500;color:var(--ink);
 }
@@ -435,9 +438,9 @@ audio{width:100%;margin-top:10px;}
 
 /* ── RANKING ── */
 .rank-card{
-  display:flex;align-items:center;gap:12px;
+  display:flex;align-items:center;gap:8px;
   background:var(--cream);border:1.5px solid var(--border2);
-  border-radius:6px;padding:14px;margin-bottom:8px;
+  border-radius:6px;padding:8px;margin-bottom:5px;
   box-shadow:0 3px 14px rgba(60,35,10,0.11);
 }
 .rank-card:first-child{border-color:rgba(122,78,24,.35);background:rgba(122,78,24,.04);}
@@ -445,7 +448,7 @@ audio{width:100%;margin-top:10px;}
 .pos-1{color:var(--brown);font-weight:900;}.pos-2{color:#888;font-weight:900;}.pos-3{color:#b07840;font-weight:900;}.pos-x{color:var(--ink-faint);font-weight:900;}
 .rank-emoji{font-size:24px;}
 .rank-info{flex:1;}
-.rank-name{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;margin-bottom:3px;}
+.rank-name{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;margin-bottom:2px;}
 .rank-stats{font-size:11px;font-weight:700;color:var(--ink);display:flex;gap:10px;flex-wrap:wrap;}
 .rank-score{font-family:'Outfit',sans-serif;font-size:28px;font-weight:300;color:var(--brown);}
 
@@ -456,7 +459,7 @@ audio{width:100%;margin-top:10px;}
 .stat-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--ink);margin-top:1px;}
 
 /* misc */
-.section-intro{font-size:11px;font-weight:800;color:var(--ink);line-height:1.8;margin-bottom:14px;padding-left:12px;border-left:3px solid var(--brown);text-transform:uppercase;letter-spacing:1px;}
+.section-intro{font-size:11px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:7px;padding-left:12px;border-left:3px solid var(--brown);text-transform:uppercase;letter-spacing:1px;}
 .empty{text-align:center;padding:32px;color:var(--ink);font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;}
 .toast{
   position:fixed;bottom:calc(var(--nav-h) + 10px);left:50%;
@@ -475,8 +478,8 @@ audio{width:100%;margin-top:10px;}
   align-items: flex-end;
   justify-content: center;
   gap: 2px;
-  height: 22px;
-  margin-top: 6px;
+  height: 14px;
+  margin-top: 4px;
   padding: 0 6px;
 }
 .sound-bar {
@@ -505,9 +508,9 @@ audio{width:100%;margin-top:10px;}
 /* ── TIMER LIVE PANEL ── */
 .timer-live-panel {
   background: linear-gradient(160deg, #f5edd8 0%, #ede0c4 60%, #e8d8b8 100%);
-  border-radius: 12px;
-  padding: 24px 20px 20px;
-  margin-bottom: 12px;
+  border-radius: 8px;
+  padding: 10px 12px 10px;
+  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -522,21 +525,21 @@ audio{width:100%;margin-top:10px;}
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  gap: 10px;
+  gap: 6px;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 8px;
   flex-wrap: wrap;
 }
 
 .timer-rec-indicator {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 5px;
+  margin-bottom: 6px;
   background: rgba(28,15,4,0.08);
   border: 1.5px solid rgba(122,78,24,0.3);
   border-radius: 20px;
-  padding: 5px 14px;
+  padding: 3px 10px;
 }
 .timer-rec-dot {
   width: 10px; height: 10px;
@@ -563,9 +566,9 @@ audio{width:100%;margin-top:10px;}
 
 .timer-live-display {
   font-family: 'Outfit', sans-serif;
-  font-size: 54px;
+  font-size: 36px;
   font-weight: 900;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   color: var(--ink);
   line-height: 1;
   transition: all .3s;
@@ -576,9 +579,9 @@ audio{width:100%;margin-top:10px;}
 }
 
 .timer-big-btn {
-  width: 78px; height: 78px;
+  width: 52px; height: 52px;
   border-radius: 50%;
-  border: 2.5px solid var(--brown);
+  border: 2px solid var(--brown);
   background: var(--brown);
   color: #fff;
   cursor: pointer;
@@ -586,9 +589,9 @@ audio{width:100%;margin-top:10px;}
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
   transition: all .25s;
-  box-shadow: 0 4px 16px rgba(122,78,24,0.35);
+  box-shadow: 0 3px 10px rgba(122,78,24,0.35);
 }
 .timer-big-btn:hover {
   border-color: var(--red);
@@ -600,7 +603,7 @@ audio{width:100%;margin-top:10px;}
   background: var(--red);
   box-shadow: 0 0 24px rgba(192,40,14,0.5);
 }
-.timer-big-icon { font-size: 24px; line-height: 1; color: #fff; }
+.timer-big-icon { font-size: 16px; line-height: 1; color: #fff; }
 .timer-big-label {
   font-family:'Outfit',sans-serif;
   font-size: 9px;
@@ -718,6 +721,293 @@ audio{width:100%;margin-top:10px;}
 }
 
 ::-webkit-scrollbar{width:3px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--border2);}
+
+/* ── RADIO VINTAGE (Talk) ── */
+.radio-vintage {
+  background: linear-gradient(160deg, #1a0a02 0%, #2d1206 40%, #1a0a02 100%);
+  border: 3px solid #c8922a;
+  border-radius: 18px 18px 24px 24px;
+  padding: 0;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7), inset 0 1px 0 rgba(180,140,40,0.2);
+  overflow: hidden;
+  position: relative;
+}
+.radio-top-bar {
+  background: linear-gradient(90deg, #4a2008 0%, #8a5a1a 30%, #b07820 50%, #8a5a1a 70%, #4a2008 100%);
+  height: 8px;
+  width: 100%;
+}
+.radio-brand {
+  text-align: center;
+  padding: 12px 16px 4px;
+  font-family: serif;
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #8a5a1a;
+  text-shadow: 0 0 6px rgba(140,90,26,0.4);
+}
+.radio-speaker-grille {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 3px;
+}
+.radio-grille-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.radio-grille-hole {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a0a02;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+}
+.radio-dial-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px 12px;
+  gap: 16px;
+}
+.radio-dial {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #8a5a1a, #3d1f06 60%, #1a0a02);
+  border: 3px solid #6a4010;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7), inset 0 1px 0 rgba(160,120,40,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  position: relative;
+}
+.radio-dial::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 3px; height: 12px;
+  background: #f0c060;
+  border-radius: 2px;
+}
+.radio-frequency {
+  flex: 1;
+  background: #0a0a0a;
+  border: 2px solid #2a1800;
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: center;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.7);
+}
+.radio-freq-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-family: monospace;
+}
+.radio-freq-value {
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffb020;
+  text-shadow: 0 0 12px rgba(255,176,32,0.9), 0 0 4px rgba(255,176,32,0.6);
+  letter-spacing: 2px;
+}
+.radio-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 16px 14px;
+}
+.radio-on-light {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #333;
+  box-shadow: none;
+  transition: all .3s;
+}
+.radio-on-light.on {
+  background: #ff4444;
+  box-shadow: 0 0 8px rgba(255,68,68,0.8);
+  animation: blink 1s infinite;
+}
+.radio-status-text {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #8a6020;
+  text-transform: uppercase;
+}
+.radio-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 0 16px 14px;
+  flex-wrap: wrap;
+}
+.radio-btn {
+  background: linear-gradient(180deg, #7a4a10 0%, #3d1f06 100%);
+  border: 2px solid #8a6020;
+  border-radius: 8px;
+  color: #fff8e8;
+  font-family: serif;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.radio-btn:active { transform: translateY(1px); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+.radio-btn.danger { background: linear-gradient(180deg, #c0280e 0%, #800000 100%); border-color: #ff6666; }
+.radio-bottom-bar {
+  background: linear-gradient(90deg, #4a2008 0%, #8a5a1a 30%, #b07820 50%, #8a5a1a 70%, #4a2008 100%);
+  height: 8px;
+  width: 100%;
+}
+
+/* ── TV VINTAGE (Diretta) ── */
+.tv-vintage {
+  background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  border: 4px solid #888;
+  border-radius: 20px 20px 28px 28px;
+  padding: 0;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1);
+  overflow: hidden;
+  position: relative;
+}
+.tv-top-bar {
+  background: linear-gradient(90deg, #555 0%, #aaa 30%, #ddd 50%, #aaa 70%, #555 100%);
+  height: 6px;
+}
+.tv-brand {
+  text-align: center;
+  padding: 8px 16px 4px;
+  font-family: serif;
+  font-size: 10px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+.tv-screen {
+  margin: 0 16px 8px;
+  background: #0a0a14;
+  border: 3px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 30px rgba(0,0,50,0.8), 0 0 20px rgba(100,100,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.tv-screen::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+  pointer-events: none;
+}
+.tv-screen-text {
+  font-family: monospace;
+  color: #88aaff;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(136,170,255,0.8);
+  z-index: 1;
+  position: relative;
+}
+.tv-screen-sub {
+  font-family: monospace;
+  color: #5577bb;
+  font-size: 11px;
+  margin-top: 6px;
+  z-index: 1;
+  position: relative;
+}
+.tv-knobs-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px 14px;
+  gap: 12px;
+}
+.tv-knob {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #888, #333 70%);
+  border: 2px solid #666;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #aaa; font-family: monospace;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 1.1;
+}
+.tv-antenna {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 4px;
+}
+.tv-antenna-arm {
+  width: 3px;
+  height: 40px;
+  background: linear-gradient(180deg, #aaa, #555);
+  border-radius: 2px;
+  transform-origin: bottom center;
+}
+.tv-antenna-arm:first-child { transform: rotate(-25deg); }
+.tv-antenna-arm:last-child { transform: rotate(25deg); }
+.tv-antenna-base {
+  width: 20px; height: 4px;
+  background: #777;
+  border-radius: 2px;
+  align-self: flex-end;
+}
+.tv-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 0 16px 14px;
+  flex-wrap: wrap;
+}
+.tv-btn {
+  background: linear-gradient(180deg, #555 0%, #222 100%);
+  border: 2px solid #888;
+  border-radius: 6px;
+  color: #ddd;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.tv-btn:active { transform: translateY(1px); }
+.tv-btn.danger { background: linear-gradient(180deg, #c0280e 0%, #600000 100%); border-color: #ff6666; color: #fff; }
+.tv-bottom-bar {
+  background: linear-gradient(90deg, #555 0%, #aaa 30%, #ddd 50%, #aaa 70%, #555 100%);
+  height: 6px;
+}
 </style>
 </head>
 <body>
@@ -748,11 +1038,11 @@ audio{width:100%;margin-top:10px;}
 <div class="scroll-area" id="scrollArea">
 
   <!-- ═══ STUDIO ═══ -->
-  <div class="section active" id="sec-studio">
-    <div class="card">
-      <div class="card-label">Conduttori</div>
+  <div class="section active" id="sec-studio" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;overflow:hidden;">
+    <div class="card" style="padding:16px 10px;text-align:center;">
+      <div class="card-label" style="justify-content:center;margin-bottom:10px;">Conduttori</div>
       <div class="hosts-row" id="hostsRow"></div>
-      <p style="font-size:11px;color:var(--ink);text-align:center;">Tocca il tuo cerchio per attivarti · modifica il nome toccandolo</p>
+      <p style="font-size:10px;color:var(--ink);text-align:center;margin-top:4px;">Tocca il tuo cerchio · modifica il nome toccandolo</p>
     </div>
 
 
@@ -773,7 +1063,7 @@ audio{width:100%;margin-top:10px;}
     <div class="room-setup" id="roomSetup">
 
       <!-- LINK APP -->
-      <div class="card" style="background:linear-gradient(135deg,rgba(122,78,24,0.08),rgba(192,40,14,0.06));border:2px solid rgba(122,78,24,0.3);margin-bottom:12px;">
+      <div class="card" style="background:linear-gradient(135deg,rgba(122,78,24,0.08),rgba(192,40,14,0.06));border:2px solid rgba(122,78,24,0.3);margin-bottom:6px;padding:8px;">
         <div class="card-label">Link dell'app</div>
         <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:10px;">Salva nei preferiti o manda ai colleghi — apre direttamente l'app:</p>
         <div style="background:#fff;border:1.5px solid var(--border2);border-radius:6px;padding:10px 12px;font-size:10px;font-weight:700;color:var(--brown);word-break:break-all;overflow-wrap:break-word;letter-spacing:0;margin-bottom:12px;max-width:100%;box-sizing:border-box;">
@@ -787,28 +1077,40 @@ audio{width:100%;margin-top:10px;}
 
       <!-- CODICE SESSIONE -->
       <div class="card-label">Codice sessione diretta</div>
-      <div class="live-room-display">
+      <div class="live-room-display" style="margin-bottom:6px;">
         <p class="live-room-hint" style="margin-bottom:12px;">Scegli un codice segreto e comunicalo ai colleghi via WhatsApp — solo chi lo ha può entrare nella stanza.</p>
         <input type="text" id="roomCodeInput" placeholder="Es: PUNTATA01" style="text-align:center;font-size:18px;font-weight:800;letter-spacing:3px;text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
       </div>
       <div class="btn-row" style="justify-content:center;margin-top:12px;">
-        <button class="btn btn-red" style="font-size:14px;padding:14px 28px;letter-spacing:2px;width:100%;justify-content:center;" onclick="startLive()">🎙 ENTRA IN DIRETTA</button>
+        <button class="btn btn-red" style="font-size:13px;padding:10px 20px;letter-spacing:2px;width:100%;justify-content:center;" onclick="startLive()">🎙 ENTRA IN DIRETTA</button>
       </div>
       <div style="text-align:center;margin-top:10px;">
         <button class="btn btn-ghost" style="font-size:11px;width:100%;justify-content:center;white-space:normal;line-height:1.4;" onclick="copySessionCode()">🔗 Copia codice da mandare ai colleghi</button>
       </div>
     </div>
 
-    <!-- JITSI IFRAME CONTAINER -->
-    <div class="jitsi-container" id="jitsiContainer">
-      <div class="jitsi-topbar">
-        <div class="jitsi-status">
-          <div class="jitsi-live-dot"></div>
-          <span id="jitsiRoomLabel">In diretta</span>
-        </div>
-        <button class="btn btn-ghost" style="font-size:10px;padding:5px 10px;color:#e8c870;border-color:#555;" onclick="stopLive()">✕ Chiudi diretta</button>
+    <!-- TV VINTAGE CONTAINER -->
+    <div class="tv-vintage" id="jitsiContainer" style="display:none;">
+      <div class="tv-top-bar"></div>
+      <div class="tv-brand">Vietato Parlare TV</div>
+      <div class="tv-screen">
+        <div class="tv-screen-text" id="jitsiRoomLabel">● IN DIRETTA</div>
+        <div class="tv-screen-sub" id="tvScreenSub">Connessione in corso...</div>
+        <div id="jitsiFrame" style="width:100%;margin-top:8px;"></div>
       </div>
-      <div id="jitsiFrame"></div>
+      <div class="tv-knobs-row">
+        <div class="tv-knob">VOL</div>
+        <div class="tv-antenna">
+          <div class="tv-antenna-arm"></div>
+          <div class="tv-antenna-base"></div>
+          <div class="tv-antenna-arm"></div>
+        </div>
+        <div class="tv-knob">CH</div>
+      </div>
+      <div class="tv-controls">
+        <button class="tv-btn danger" onclick="stopLive()">✕ Chiudi Diretta</button>
+      </div>
+      <div class="tv-bottom-bar"></div>
     </div>
 
     <!-- TIMER — integrato con la diretta -->
@@ -819,7 +1121,7 @@ audio{width:100%;margin-top:10px;}
           <span id="timerRecLabel">NON IN REGISTRAZIONE</span>
         </div>
         <div class="timer-live-display" id="timerDisplay">00:00:00</div>
-        <div class="waveform" id="waveform" style="margin:10px 0 0;justify-content:center;">
+        <div class="waveform" id="waveform" style="margin:4px 0 0;justify-content:center;">
           <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
           <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
           <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
@@ -839,7 +1141,7 @@ audio{width:100%;margin-top:10px;}
 
     <div class="card">
       <div class="card-label">Come funziona</div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:7px;">
         <div class="step-row"><div class="step-num step-1">1</div><div class="step-text">Scegliete un nome stanza e mandatelo ai colleghi</div></div>
         <div class="step-row"><div class="step-num step-2">2</div><div class="step-text">Tutti e tre premono <strong>Entra in Diretta</strong></div></div>
         <div class="step-row"><div class="step-num step-3">3</div><div class="step-text">La chiamata si apre <strong>qui dentro</strong> — senza uscire dall'app</div></div>
@@ -858,10 +1160,10 @@ audio{width:100%;margin-top:10px;}
       </div>
     </div>
 
-    <div class="card" id="talkSetup">
+    <div class="card" id="talkSetup" style="padding:8px;">
       <div class="card-label">Codice stanza</div>
       <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:12px;">Scegli un codice e comunicalo ai colleghi via WhatsApp.</p>
-      <input type="text" id="talkCodeInput" placeholder="Es: TALK01" style="text-align:center;font-size:18px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;" oninput="this.value=this.value.toUpperCase()">
+      <input type="text" id="talkCodeInput" placeholder="Es: TALK01" style="text-align:center;font-size:16px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;" oninput="this.value=this.value.toUpperCase()">
       <div class="btn-row" style="justify-content:center;margin-top:8px;">
         <button class="btn btn-red" style="font-size:14px;padding:14px 28px;width:100%;justify-content:center;" onclick="startTalk()">🎧 AVVIA TALK</button>
       </div>
@@ -870,30 +1172,63 @@ audio{width:100%;margin-top:10px;}
       </div>
     </div>
 
-    <div class="jitsi-container" id="talkContainer">
-      <div class="jitsi-topbar">
-        <div class="jitsi-status">
-          <div class="jitsi-live-dot"></div>
-          <span id="talkRoomLabel">Talk in corso</span>
+    <div class="radio-vintage" id="talkContainer" style="display:none;">
+      <div class="radio-top-bar"></div>
+      <div class="radio-brand">Vietato Parlare · Talk Me</div>
+      <div class="radio-speaker-grille"><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div><div class="radio-grille-col"><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div><div class="radio-grille-hole"></div></div></div>
+      <div class="radio-dial-area">
+        <div class="radio-dial">📻</div>
+        <div class="radio-frequency">
+          <div class="radio-freq-label">On Air</div>
+          <div class="radio-freq-value" id="talkRoomLabel">---</div>
         </div>
-        <button class="btn btn-ghost" style="font-size:10px;padding:5px 10px;color:#e8c870;border-color:#555;" onclick="stopTalk()">✕ Chiudi Talk</button>
+        <div class="radio-dial">🎙</div>
       </div>
-      <div id="talkPanel" style="background:#111;padding:20px 16px;color:#fff;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-        <div id="talkStatus" style="font-size:15px;font-weight:600;">⏳ Connessione...</div>
-        <div id="talkConnected" style="font-size:13px;color:#4caf50;display:none;">🎧 Colleghi connessi: <span id="talkCount">0</span></div>
-        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;">
-          <button onclick="muteTalk()" id="talkMuteBtn" style="background:#333;border:none;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer;">🎙 Muto</button>
-          <button onclick="stopTalk()" style="background:#c0280e;border:none;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer;">✕ Chiudi</button>
-        </div>
+      <div class="radio-status-row">
+        <div class="radio-on-light" id="radioOnLight"></div>
+        <div class="radio-status-text" id="talkStatus">In attesa...</div>
+      </div>
+      <div id="talkConnected" style="text-align:center;font-family:monospace;font-size:12px;color:#ffffff;padding:0 16px 8px;display:none;">
+        🎧 Colleghi connessi: <span id="talkCount">0</span>
+      </div>
+      <div class="radio-controls">
+        <button class="radio-btn" onclick="muteTalk()" id="talkMuteBtn">🎙 Muto</button>
+        <button class="radio-btn danger" onclick="stopTalk()">✕ Chiudi</button>
+      </div>
+      <div class="radio-bottom-bar"></div>
+    </div>
+
+    <div class="card" style="margin-top:5px;padding:8px;">
+      <div class="card-label">Come funziona</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div class="step-row"><div class="step-num step-1">1</div><div class="step-text">Scegli un codice e mandalo ai colleghi</div></div>
+        <div class="step-row"><div class="step-num step-2">2</div><div class="step-text">Tutti inseriscono lo stesso codice e premono <strong>Avvia Talk Me</strong></div></div>
+        <div class="step-row"><div class="step-num step-3">3</div><div class="step-text">Connessione diretta — solo voce, nessun login</div></div>
       </div>
     </div>
 
-    <div class="card" style="margin-top:10px;">
-      <div class="card-label">Come funziona</div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div class="step-row"><div class="step-num step-1">1</div><div class="step-text">Scegli un codice e mandalo ai colleghi</div></div>
-        <div class="step-row"><div class="step-num step-2">2</div><div class="step-text">Tutti inseriscono lo stesso codice e premono <strong>Avvia Talk</strong></div></div>
-        <div class="step-row"><div class="step-num step-3">3</div><div class="step-text">Connessione diretta — solo voce, nessun login</div></div>
+    <div class="timer-live-panel" id="talkTimerPanel">
+      <div class="timer-live-left">
+        <div class="timer-rec-indicator" id="talkRecIndicator">
+          <div class="timer-rec-dot" id="talkRecDot"></div>
+          <span id="talkRecLabel">NON IN REGISTRAZIONE</span>
+        </div>
+        <div class="timer-live-display" id="talkTimerDisplay">00:00:00</div>
+        <div class="waveform" id="talkWaveform" style="margin:4px 0 0;justify-content:center;">
+          <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
+          <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
+          <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
+          <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
+        </div>
+      </div>
+      <div class="timer-live-right">
+        <button class="timer-big-btn" id="talkTimerBtn" onclick="toggleTalkTimer()">
+          <span class="timer-big-icon">&#9654;</span>
+          <span class="timer-big-label" id="talkTimerBtnLabel">AVVIA<br>TIMER</span>
+        </button>
+        <button class="btn" id="talkPauseBtn" style="font-size:11px;font-weight:700;padding:8px 14px;background:var(--ink);color:#fff;border-radius:6px;" onclick="pauseTalkTimer()" disabled>&#9208; Pausa</button>
+        <button class="btn" id="talkResetBtn" style="font-size:11px;font-weight:700;padding:8px 14px;background:var(--ink);color:#fff;border-radius:6px;" onclick="resetTalkTimer()" disabled>&#8634; Reset</button>
+        <button class="btn btn-brown" style="font-size:11px;font-weight:800;padding:10px 18px;letter-spacing:1.5px;" onclick="promptSaveTalkEp()">&#128190; SALVA PUNTATA</button>
       </div>
     </div>
   </div>
@@ -979,7 +1314,7 @@ audio{width:100%;margin-top:10px;}
   </button>
   <button class="nav-item" id="nav-talk" onclick="showSection(this,'talk')">
     <div class="nav-icon-wrap"><span class="nav-icon">🎧</span></div>
-    <span class="nav-label">Talk</span>
+    <span class="nav-label">Talk Me</span>
   </button>
   <button class="nav-item" id="nav-producer" onclick="showSection(this,'producer')">
     <div class="nav-icon-wrap"><span class="nav-icon">🤖</span></div>
@@ -1296,18 +1631,18 @@ function startLive() {
     src="https://meet.jit.si/${room}#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.requireDisplayName=false&config.enableLobbyChat=false&config.lobby.autoKnock=true&config.disableDeepLinking=true&config.prejoinPageEnabled=false&config.enableWelcomePage=false&config.startAsMuted=false&config.disableModeratorIndicator=true&config.enableNoAudioDetection=false&config.enableNoisyMicDetection=false&config.toolbarButtons=[%22microphone%22,%22camera%22,%22hangup%22,%22tileview%22]&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false"
     allow="camera; microphone; fullscreen; display-capture; autoplay"
     style="width:100%;height:360px;border:none;"></iframe>`;
-  container.classList.add('active');
+  container.style.display = 'block';
   jitsiActive = true;
   const b = document.getElementById('onairBadge');
   b.classList.add('live');
   b.innerHTML = `<div class="onair-dot"></div><span>In Diretta</span>`;
   document.getElementById('roomSetup').style.display = 'none';
-  toast('🎙 Stanza aperta — aspetta i colleghi!');
+  toast('🎙 Stanza aperta — aspetta i colleghi!'); const tvSub = document.getElementById('tvScreenSub'); if(tvSub) tvSub.textContent = 'Diretta attiva';
 }
 
 function stopLive() {
   document.getElementById('jitsiFrame').innerHTML = '';
-  document.getElementById('jitsiContainer').classList.remove('active');
+  document.getElementById('jitsiContainer').style.display = 'none';
   document.getElementById('roomSetup').style.display = 'block';
   jitsiActive = false;
   const b = document.getElementById('onairBadge');
@@ -1382,7 +1717,7 @@ function startTalk() {
   if (!code) { toast('Inserisci un codice stanza!'); return; }
   const room = 'VietatoParlare_TALK_' + code;
   document.getElementById('talkRoomLabel').textContent = '🔴 Talk · ' + code;
-  document.getElementById('talkContainer').classList.add('active');
+  document.getElementById('talkContainer').style.display = 'block';
   document.getElementById('talkSetup').style.display = 'none';
 
   if (!window.Peer) {
@@ -1396,16 +1731,73 @@ function startTalk() {
   }
 }
 
+function applyWarmMic(stream) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = ctx.createMediaStreamSource(stream);
+
+    // High-pass filter: taglia rumori sotto 80Hz
+    const highPass = ctx.createBiquadFilter();
+    highPass.type = 'highpass';
+    highPass.frequency.value = 80;
+    highPass.Q.value = 0.7;
+
+    // Low shelf boost: calore sui bassi vocali 200Hz
+    const warmth = ctx.createBiquadFilter();
+    warmth.type = 'lowshelf';
+    warmth.frequency.value = 200;
+    warmth.gain.value = 4;
+
+    // Presenza vocale: boost 2-4kHz
+    const presence = ctx.createBiquadFilter();
+    presence.type = 'peaking';
+    presence.frequency.value = 3000;
+    presence.Q.value = 0.8;
+    presence.gain.value = 3;
+
+    // Taglio sibilante: riduci 8kHz
+    const deSibilance = ctx.createBiquadFilter();
+    deSibilance.type = 'peaking';
+    deSibilance.frequency.value = 8000;
+    deSibilance.Q.value = 1.0;
+    deSibilance.gain.value = -4;
+
+    // Compressore dinamico
+    const compressor = ctx.createDynamicsCompressor();
+    compressor.threshold.value = -24;
+    compressor.knee.value = 8;
+    compressor.ratio.value = 4;
+    compressor.attack.value = 0.003;
+    compressor.release.value = 0.15;
+
+    // Destinazione stream processato
+    const dest = ctx.createMediaStreamDestination();
+
+    // Chain: source -> highPass -> warmth -> presence -> deSibilance -> compressor -> dest
+    source.connect(highPass);
+    highPass.connect(warmth);
+    warmth.connect(presence);
+    presence.connect(deSibilance);
+    deSibilance.connect(compressor);
+    compressor.connect(dest);
+
+    return dest.stream;
+  } catch(e) {
+    console.warn('Audio processing non disponibile:', e);
+    return stream;
+  }
+}
+
 function initTalk(room) {
   navigator.mediaDevices.getUserMedia({ audio: true, video: false })
     .then(stream => {
-      talkStream = stream;
+      talkStream = applyWarmMic(stream);
       const hostId = room + '_HOST';
       talkPeer = new Peer(hostId, { debug: 0 });
 
       talkPeer.on('open', () => {
-        document.getElementById('talkStatus').textContent = '✅ Stanza aperta! Aspetta i colleghi...';
-        toast('🎧 Talk aperto!');
+        document.getElementById('talkStatus').textContent = '✅ Stanza aperta! Aspetta i colleghi...'; const rl = document.getElementById('radioOnLight'); if(rl) rl.classList.add('on');
+        toast('🎧 Talk Me aperto!');
       });
 
       talkPeer.on('call', call => {
@@ -1415,7 +1807,7 @@ function initTalk(room) {
           addTalkAudio(remoteStream, call.peer);
           document.getElementById('talkCount').textContent = talkCalls.length;
           document.getElementById('talkConnected').style.display = 'block';
-          document.getElementById('talkStatus').textContent = '🎧 Talk in corso!';
+          document.getElementById('talkStatus').textContent = '🎧 Talk Me in corso!';
           toast('🎧 Collega entrato!');
         });
         call.on('close', () => {
@@ -1492,11 +1884,10 @@ function stopTalk() {
   if (talkStream) { talkStream.getTracks().forEach(t => t.stop()); talkStream = null; }
   talkMuted = false;
   document.querySelectorAll('audio[id^="talkaudio_"]').forEach(a => a.remove());
-  document.getElementById('talkContainer').classList.remove('active');
+  document.getElementById('talkContainer').style.display = 'none';
   document.getElementById('talkSetup').style.display = 'block';
-  document.getElementById('talkStatus').textContent = '⏳ Connessione...';
-  document.getElementById('talkConnected').style.display = 'none';
-  toast('Talk chiuso.');
+  document.getElementById('talkStatus').textContent = '⏳ Connessione...'; document.getElementById('talkConnected').style.display = 'none'; const rl2 = document.getElementById('radioOnLight'); if(rl2) rl2.classList.remove('on');
+  toast('Talk Me chiuso.');
 }
 
 function copyTalkCode() {
@@ -1504,6 +1895,88 @@ function copyTalkCode() {
   if (!code) { toast('Inserisci prima un codice!'); return; }
   const msg = '🎧 Vietato Parlare — Codice Talk: ' + code + ' - Apri app: https://alessandromanetto88-eng.github.io/Vietato-Parlare/studiocast-final.html';
   navigator.clipboard.writeText(msg).then(() => toast('Codice copiato! Incollalo su WhatsApp 📱'));
+}
+
+// ── TALK TIMER ──
+let talkTimerSecs = 0, talkTimerTick = null, talkTimerRunning = false, talkTimerPaused = false;
+
+function toggleTalkTimer() {
+  if (!talkTimerRunning) {
+    talkTimerRunning = true; talkTimerPaused = false;
+    talkTimerTick = setInterval(() => {
+      talkTimerSecs++;
+      document.getElementById('talkTimerDisplay').textContent = fmt(talkTimerSecs);
+    }, 1000);
+    document.getElementById('talkTimerDisplay').classList.add('running');
+    document.getElementById('talkWaveform').classList.add('live');
+    document.getElementById('talkTimerBtn').classList.add('running');
+    document.getElementById('talkTimerBtnLabel').innerHTML = 'STOP<br>TIMER';
+    document.getElementById('talkTimerBtn').querySelector('.timer-big-icon').textContent = '⏹';
+    document.getElementById('talkPauseBtn').disabled = false;
+    document.getElementById('talkResetBtn').disabled = false;
+    document.getElementById('talkRecDot').classList.add('recording');
+    document.getElementById('talkRecLabel').classList.add('recording');
+    document.getElementById('talkRecLabel').textContent = '● IN REGISTRAZIONE';
+  } else {
+    clearInterval(talkTimerTick); talkTimerRunning = false;
+    document.getElementById('talkTimerDisplay').classList.remove('running');
+    document.getElementById('talkWaveform').classList.remove('live');
+    document.getElementById('talkTimerBtn').classList.remove('running');
+    document.getElementById('talkTimerBtnLabel').innerHTML = 'AVVIA<br>TIMER';
+    document.getElementById('talkTimerBtn').querySelector('.timer-big-icon').textContent = '▶';
+    document.getElementById('talkPauseBtn').disabled = true;
+    document.getElementById('talkRecDot').classList.remove('recording');
+    document.getElementById('talkRecLabel').classList.remove('recording');
+    document.getElementById('talkRecLabel').textContent = 'NON IN REGISTRAZIONE';
+  }
+}
+
+function pauseTalkTimer() {
+  if (talkTimerRunning && !talkTimerPaused) {
+    clearInterval(talkTimerTick); talkTimerPaused = true;
+    document.getElementById('talkPauseBtn').textContent = '▶ Riprendi';
+    document.getElementById('talkWaveform').classList.remove('live');
+  } else if (talkTimerPaused) {
+    talkTimerTick = setInterval(() => { talkTimerSecs++; document.getElementById('talkTimerDisplay').textContent = fmt(talkTimerSecs); }, 1000);
+    talkTimerPaused = false;
+    document.getElementById('talkPauseBtn').textContent = '⏸ Pausa';
+    document.getElementById('talkWaveform').classList.add('live');
+  }
+}
+
+function resetTalkTimer() {
+  clearInterval(talkTimerTick); talkTimerRunning = false; talkTimerPaused = false; talkTimerSecs = 0;
+  document.getElementById('talkTimerDisplay').textContent = '00:00:00';
+  document.getElementById('talkTimerDisplay').classList.remove('running');
+  document.getElementById('talkWaveform').classList.remove('live');
+  document.getElementById('talkTimerBtn').classList.remove('running');
+  document.getElementById('talkTimerBtnLabel').innerHTML = 'AVVIA<br>TIMER';
+  document.getElementById('talkTimerBtn').querySelector('.timer-big-icon').textContent = '▶';
+  document.getElementById('talkPauseBtn').textContent = '⏸ Pausa';
+  document.getElementById('talkPauseBtn').disabled = true;
+  document.getElementById('talkResetBtn').disabled = true;
+  document.getElementById('talkRecDot').classList.remove('recording');
+  document.getElementById('talkRecLabel').classList.remove('recording');
+  document.getElementById('talkRecLabel').textContent = 'NON IN REGISTRAZIONE';
+}
+
+function promptSaveTalkEp() {
+  if (talkTimerSecs === 0) { toast('Avvia prima il timer!'); return; }
+  const title = window.prompt('Titolo della puntata:', 'Puntata ' + (S.epNext));
+  if (!title || !title.trim()) { toast('Titolo non inserito.'); return; }
+  const ep = {
+    id: S.epNext++,
+    title: title.trim(),
+    date: new Date().toLocaleDateString('it-IT'),
+    dur: talkTimerSecs,
+    host: S.activeHost || 1,
+    status: 'rec'
+  };
+  S.episodes.unshift(ep);
+  save();
+  document.getElementById('epCounter').textContent = S.episodes.length + ' episodi';
+  resetTalkTimer();
+  toast('Puntata salvata!');
 }
 
 // ── SAVE EPISODE ──
